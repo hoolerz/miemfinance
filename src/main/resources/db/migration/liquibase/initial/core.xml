@@ -1,0 +1,194 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+  logicalFilePath="db/migration/liquibase/master.xml">
+
+    <changeSet id="ADDED USER TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="USER">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="LOGIN" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED FINANCIAL_INSTRUMENT TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="FINANCIAL_INSTRUMENT">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="TICKER" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="varchar(255)"/>
+            <column name="COUNTRY" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED NEWS TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="NEWS">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="HEADER" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_TEXT" type="text"/>
+            <column name="SHORT_TEXT" type="text"/>
+            <column name="PUBLISHED_DATE" type="TIMESTAMP(6)"/>
+            <column name="SOURCE" type="varchar(255)"/>
+            <column name="SENTIMENT" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED FILE_ENTITY TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="FILE_ENTITY">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NAME" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTENT_TYPE" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED DICTIONARY_ITEM TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="DICTIONARY_ITEM">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="TYPE" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALUE" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEXT" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED INSTRUMENT_PRICE TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="INSTRUMENT_PRICE">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_PRICE_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+            <column name="OPEN" type="NUMBER(5, 2)"/>
+            <column name="CLOSE" type="NUMBER(5, 2)"/>
+            <column name="HIGH" type="NUMBER(5, 2)"/>
+            <column name="LOW" type="NUMBER(5, 2)"/>
+            <column name="UPDATED_DATE" type="TIMESTAMP(6)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED INSTRUMENT_PREDICTION TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="INSTRUMENT_PREDICTION">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_PRED_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+            <column name="TYPE" type="varchar(255)"/>
+            <column name="PREDICTION" type="varchar(255)"/>
+            <column name="CERTAINTY" type="NUMBER(5, 2)"/>
+            <column name="UPDATED_DATE" type="TIMESTAMP(6)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED INSTRUMENT_INDEX TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="INSTRUMENT_INDEX">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_INDEX_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+            <column name="INDEX_VALUE" type="NUMBER(5, 2)"/>
+            <column name="UPDATED_DATE" type="TIMESTAMP(6)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED INSTRUMENT_TAG TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="INSTRUMENT_TAG">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_TAG_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+            <column name="TAG_VALUE" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED INSTRUMENT_NEWS TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="INSTRUMENT_NEWS">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_NEWS_INSTR_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+            <column name="NEWS_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_NEWS_NEWS_ID_FK" referencedTableName="NEWS"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED INSTRUMENT_ATTACHMENT TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="INSTRUMENT_ATTACHMENT">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_ATTCH_INSTR_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+            <column name="FILE_ENTITY_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="INSTR_ATTCH_FILE_ID_FK" referencedTableName="FILE_ENTITY"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED USER_SELECTED_INSTRUMENT TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="USER_SELECTED_INSTRUMENT">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USER_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="USER_INSTR_USER_ID_FK" referencedTableName="USER"/>
+            </column>
+            <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="USER_INSTR_INSTR_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ADDED USER_ATTACHMENT TABLE" author="yamikhaylov" runOnChange="true">
+        <createTable tableName="USER_ATTACHMENT">
+            <column name="ID" remarks="Identifier" type="NUMBER(19, 0)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USER_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="USER_ATTCH_USER_ID_FK" referencedTableName="USER"/>
+            </column>
+            <column name="FILE_ENTITY_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="USER_ATTCH_FILE_ID_FK" referencedTableName="FILE_ENTITY"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
