@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  liquibase:
+    change-log: classpath:/db/migration/liquibase/master.xml
+
+miemfinance:
+  sso-enabled: true

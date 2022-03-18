@@ -1,0 +1,32 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MiemfinanceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="miemfinance" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.hse.miemfinance.MiemfinanceApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <additionalParameters>
+      <param>
+        <option name="name" value="DATABASE_DRIVER" />
+        <option name="value" value="org.postgres.Driver" />
+      </param>
+      <param>
+        <option name="enabled" value="true" />
+        <option name="name" value="DATABASE_URL" />
+        <option name="value" value="jdbc:postgresql://localhost:5430/postgres" />
+      </param>
+      <param>
+        <option name="enabled" value="true" />
+        <option name="name" value="DATABASE_USER" />
+        <option name="value" value="postgres" />
+      </param>
+      <param>
+        <option name="enabled" value="true" />
+        <option name="name" value="DATABASE_PASSWORD" />
+        <option name="value" value="postgres" />
+      </param>
+    </additionalParameters>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
