@@ -5,6 +5,25 @@ spring:
     password: postgres
   liquibase:
     change-log: classpath:/db/migration/liquibase/master.xml
+  security:
+    oauth2:
+      client:
+        registration:
+          microsoft:
+            scope: openid, email, profile
+            client-id: e0298532-643b-40af-a866-a309039151ea
+            client-secret: a7b51945-1f9e-4461-a2f9-130149b7d737
+            authorization-grant-type: authorization_code
+            redirect-uri: "https://localhost:8443/api/login/oauth2/code/"
+            client-name: Microsoft
+            provider: microsoft
+          provider:
+            microsoft:
+              authorization-uri: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+              token-uri: https://login.microsoftonline.com/common/oauth2/v2.0/token
+              user-info-uri: https://graph.microsoft.com/oidc/userinfo
+              jwks-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
+              userNameAttribute: sub
 
 miemfinance:
   sso-enabled: false

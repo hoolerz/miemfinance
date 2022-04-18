@@ -1,3 +1,25 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    # The format used for the keystore. It could be set to JKS in case it is a JKS file
+    key-store-type: JKS
+    # The path to the keystore containing the certificate
+    key-store: classpath:baeldung.jks
+    # The password used to generate the certificate
+    key-store-password: password
+    # The alias mapped to the certificate
+    key-alias: baeldung
+  #servlet:
+   # context-path: /api
+
+trust:
+  #trust store location
+  store:
+    location: classpath:baeldung.jks
+    #trust store password
+    password: password
+
 spring:
   datasource:
     url: ${DATABASE_URL}
@@ -5,6 +27,30 @@ spring:
     password: ${DATABASE_PASSWORD}
   liquibase:
     change-log: classpath:/db/migration/liquibase/master.xml
+  security:
+    oauth2:
+      client:
+        registration:
+          microsoft:
+            scope: openid, email, profile
+            client-id: e0298532-643b-40af-a866-a309039151ea
+            client-secret: WeM7Q~tWCkIUdWhD0hxGEhTVtbKgNT3tgelI-
+            authorization-grant-type: authorization_code
+            redirect-uri: "https://localhost:8443/api/login/oauth2/code/"
+            client-name: Microsoft
+            provider: microsoft
+        provider:
+          microsoft:
+            authorization-uri: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+            token-uri: https://login.microsoftonline.com/common/oauth2/v2.0/token
+            user-info-uri: https://graph.microsoft.com/oidc/userinfo
+            jwks-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
+            userNameAttribute: sub
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 miemfinance:
   sso-enabled: true

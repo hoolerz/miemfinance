@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-@ConditionalOnProperty(prefix = "miemfinance", name = "sso-enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "miemfinance", name = "sso-enabled", havingValue = "false")
 public class LocalSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override

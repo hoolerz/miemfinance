@@ -14,15 +14,18 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Getter
 @Setter
 @Entity
-@Table (name = "USER")
+@Table (name = "users")
 @NoArgsConstructor
 public class User extends AbstractPersistable<Long> {
 
 	@Column
-	private String login;
+	private String username;
 
 	@Column
-	private String password;
+	private String email;
+
+	@Column
+	private String preferredName;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
 	private Set<UserSelectedInstrument> selectedInstruments;
