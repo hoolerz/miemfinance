@@ -16,6 +16,13 @@ public class NewsService {
 
 	private final NewsRepository newsRepository;
 
+	public List<NewsDTO> getAllNews() {
+		List<News> news = newsRepository.findAll();
+		return news.stream()
+				.map(NewsDTO::new)
+				.collect(Collectors.toList());
+	}
+
 	public List<NewsDTO> getAllRecentNews() {
 		List<News> news = newsRepository.findAllByPublishedDateAfter(LocalDateTime.now().minus(3, ChronoUnit.DAYS));
 		return news.stream()

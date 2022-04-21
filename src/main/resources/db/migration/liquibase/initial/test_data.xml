@@ -1,0 +1,43 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
+  logicalFilePath="db/migration/liquibase/master.xml">
+
+    <changeSet id="FIN_INSTRUMENT TEST DATA" author="yamikhaylov">
+        <loadUpdateData tableName="FINANCIAL_INSTRUMENT" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/fin_instr.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="TICKER" name="TICKER" type="STRING"/>
+            <column header="NAME" name="NAME" type="STRING"/>
+            <column header="DESCRIPTION" name="DESCRIPTION" type="STRING"/>
+            <column header="COUNTRY" name="COUNTRY" type="STRING"/>
+        </loadUpdateData>
+        <loadUpdateData tableName="INSTRUMENT_TAG" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/instr_tags.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
+            <column header="TAG_VALUE" name="TAG_VALUE" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="NEWS TEST DATA" author="yamikhaylov">
+        <loadUpdateData tableName="NEWS" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/news.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="HEADER" name="HEADER" type="STRING"/>
+            <column header="FULL_TEXT" name="FULL_TEXT" type="STRING"/>
+            <column header="SHORT_TEXT" name="SHORT_TEXT" type="STRING"/>
+            <column header="PUBLISHED_DATE" name="PUBLISHED_DATE" type="DATE"/>
+            <column header="SOURCE" name="SOURCE" type="STRING"/>
+            <column header="SENTIMENT" name="SENTIMENT" type="STRING"/>
+        </loadUpdateData>
+        <loadUpdateData tableName="INSTRUMENT_NEWS" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/instrument_news.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
+            <column header="NEWS_ID" name="NEWS_ID" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+
+</databaseChangeLog>

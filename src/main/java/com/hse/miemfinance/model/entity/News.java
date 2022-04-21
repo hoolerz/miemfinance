@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,7 +37,7 @@ public class News extends AbstractPersistable<Long> {
 	@Column
 	private LocalDateTime publishedDate;
 
-	@OrderBy("financialInstrument.name")
+	//@OrderBy("financialInstrument.name")
 	@OneToMany(mappedBy = "news", fetch = FetchType.EAGER, orphanRemoval = true)
 	private Set<FinancialInstrumentNews> financialInstruments;
 

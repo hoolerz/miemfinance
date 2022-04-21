@@ -34,7 +34,7 @@
             <column name="NAME" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="DESCRIPTION" type="varchar(255)"/>
+            <column name="DESCRIPTION" type="text"/>
             <column name="COUNTRY" type="varchar(255)"/>
         </createTable>
     </changeSet>

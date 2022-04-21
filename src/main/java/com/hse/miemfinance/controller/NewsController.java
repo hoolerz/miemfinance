@@ -28,9 +28,9 @@ public class NewsController {
 	}
 
 	@CrossOrigin(origins = "*") //fixme
-	@RequestMapping(method = RequestMethod.GET, value = "/heel")
+	@RequestMapping(method = RequestMethod.GET, value = "/all")
 	public ResponseEntity health2(Authentication authentication) {
-		return ResponseEntity.ok().body(authentication.getName());
+		return ResponseEntity.ok().body(newsService.getAllNews());
 	}
 
 	@CrossOrigin(origins = "*")
