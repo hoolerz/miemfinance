@@ -29,7 +29,7 @@ public class NewsDTO extends DataDTO {
 	private Set<String> financialInstruments;
 
 	public NewsDTO(News entity) {
-		this.id = String.valueOf(entity.getId());
+		super(String.valueOf(entity.getId()));
 		this.header = entity.getHeader();
 		this.shortText = entity.getShortText();
 		this.fullText = entity.getFullText();

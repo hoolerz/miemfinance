@@ -17,7 +17,7 @@ public class NewsService {
 	private final NewsRepository newsRepository;
 
 	public List<NewsDTO> getAllNews() {
-		List<News> news = newsRepository.findAll();
+		List<News> news = newsRepository.findAllByOrderByPublishedDateDesc();
 		return news.stream()
 				.map(NewsDTO::new)
 				.collect(Collectors.toList());

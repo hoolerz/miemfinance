@@ -18,8 +18,10 @@ public class FinancialInstrumentDTO extends DataDTO {
 
 	private String country;
 
+	private String attachmentId;
+
 	public FinancialInstrumentDTO(FinancialInstrument entity) {
-		this.id = String.valueOf(entity.getId());
+		super(String.valueOf(entity.getId()));
 		this.name = entity.getName();
 		this.ticker = entity.getTicker();
 		this.description = entity.getDescription();

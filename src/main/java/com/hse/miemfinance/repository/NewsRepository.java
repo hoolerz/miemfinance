@@ -19,4 +19,6 @@ public interface NewsRepository extends JpaRepository<News, Long>, JpaSpecificat
 
 	List<News> findAllByPublishedDateAfter(LocalDateTime publishedDate);
 
+	List<News> findAllByOrderByPublishedDateDesc();
+
 }

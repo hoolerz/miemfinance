@@ -3,6 +3,7 @@ package com.hse.miemfinance.model.entity;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class UserAttachment extends AbstractPersistable<Long> {
 	@JoinColumn(name = "FILE_ENTITY_ID")
 	private FileEntity entity;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "USER_ID")
 	private User user;
 

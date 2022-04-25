@@ -1,9 +1,12 @@
 package com.hse.miemfinance.service;
 
+import com.hse.miemfinance.model.dto.UserDTO;
 import com.hse.miemfinance.model.entity.User;
 import com.hse.miemfinance.repository.UserRepository;
-import java.util.Optional;
+import com.hse.miemfinance.security.MiemUserDetails;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,9 +33,26 @@ public class UserService {
 		return userRepository.findByUsername(username).isPresent();
 	}
 
-	public Optional<User> findByUsername(String username) {
-			return userRepository.findByUsername(username);
+	public User getUser(String username) {
+			return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
 	}
 
+	public User getUser(Long userId) {
+		return userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException(String.valueOf(userId)));
+	}
+
+	public Long getUserIdFromAuthentication(Authentication authentication) {
+		MiemUserDetails miemUserDetails = (MiemUserDetails) authentication.getPrincipal();
+		return miemUserDetails.getId();
+	}
+
+	public UserDTO getUserInfo(Long userId) {
+		User user = userRepository.findById(userId).orElse(null);
+		UserDTO userDTO = null;
+		if (user != null) {
+			userDTO = new UserDTO(user);
+		}
+		return userDTO;
+	}
 
 }

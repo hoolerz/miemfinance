@@ -8,16 +8,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDTO  extends DataDTO {
+public class UserDTO extends DataDTO {
 
 	private String username;
 
 	private String email;
 
+	private String preferredName;
+
+	private String attachmentId;
+
 	public UserDTO(User entity) {
-		this.id = String.valueOf(entity.getId());
+		super(String.valueOf(entity.getId()));
 		this.username = entity.getUsername();
 		this.email = entity.getEmail();
+		this.preferredName = entity.getPreferredName();
+		//this.attachmentId = Optional.ofNullable(entity.getAttachment()).get().getEntity().getId();
 	}
 
 }

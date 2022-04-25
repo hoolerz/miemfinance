@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,7 @@ public class User extends AbstractPersistable<Long> {
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
 	private Set<UserSelectedInstrument> selectedInstruments;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<UserAttachment> attachments;
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
+	private UserAttachment attachment;
 
 }
