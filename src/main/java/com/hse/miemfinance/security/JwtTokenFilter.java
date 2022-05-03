@@ -13,6 +13,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,13 +23,15 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
 @RequiredArgsConstructor
+// Spring will add it into the Context regardless of it being present in the SecurityConfig
+@ConditionalOnProperty(prefix = "miemfinance", name = "sso-enabled", havingValue = "true")
 public class JwtTokenFilter extends OncePerRequestFilter {
 
 	private final JwtUtil jwtUtil;
 
 	private final UserAuthenticationService userAuthenticationService;
 
-	private final Set<String> skipUrls = new HashSet<>(Set.of("/api/login/callback/", "/error"));
+	private final Set<String> skipUrls = new HashSet<>(Set.of("/api/login/callback", "/error"));
 
 	private final AntPathMatcher pathMatcher = new AntPathMatcher();
 

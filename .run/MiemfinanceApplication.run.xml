@@ -24,6 +24,10 @@
         <option name="name" value="DATABASE_PASSWORD" />
         <option name="value" value="postgres" />
       </param>
+      <param>
+        <option name="name" value="MIEM_FINANCE_SSO_ENABLED" />
+        <option name="value" value="false" />
+      </param>
     </additionalParameters>
     <method v="2">
       <option name="Make" enabled="true" />

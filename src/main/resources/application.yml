@@ -1,7 +1,7 @@
 server:
   port: 8443
   ssl:
-    enabled: true
+    enabled: false
     # The format used for the keystore. It could be set to JKS in case it is a JKS file
     key-store-type: JKS
     # The path to the keystore containing the certificate
@@ -46,11 +46,7 @@ spring:
             user-info-uri: https://graph.microsoft.com/oidc/userinfo
             jwks-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
             userNameAttribute: sub
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+
 
 miemfinance:
-  sso-enabled: true
+  sso-enabled: ${MIEMFINANCE_SSO_ENBLED:true}

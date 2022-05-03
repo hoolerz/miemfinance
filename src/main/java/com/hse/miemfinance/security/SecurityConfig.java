@@ -40,18 +40,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.cors()
 				.and()
 				.csrf().disable();
-
 		http
 				.addFilterBefore(
 						jwtTokenFilter,
 						UsernamePasswordAuthenticationFilter.class
 				);
-
 		http
 				.authorizeRequests()
-				.antMatchers("/api/login/**").permitAll()
+				.antMatchers("/api/**").permitAll()
 				.antMatchers("/**").authenticated();
-
 		http
 				.oauth2Login()
 				.defaultSuccessUrl("/health")

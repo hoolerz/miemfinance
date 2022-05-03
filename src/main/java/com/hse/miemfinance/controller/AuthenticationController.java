@@ -89,8 +89,8 @@ public class AuthenticationController {
 		params.put("scope","openid email profile");
 		params.put("code", authenticationCode);
 		params.put("client_id", "e0298532-643b-40af-a866-a309039151ea");
-		params.put("client_secret", "WeM7Q~tWCkIUdWhD0hxGEhTVtbKgNT3tgelI-");
-		params.put("redirect_uri", "https://localhost:8443/api/login/callback/");
+		//params.put("client_secret", "WeM7Q~tWCkIUdWhD0hxGEhTVtbKgNT3tgelI-");
+		params.put("redirect_uri", "miem-invest://oauth/callback");
 		params.put("name", "Freddie");
 		StringBuilder postData = new StringBuilder();
 		for (Map.Entry<String, Object> param : params.entrySet()) {

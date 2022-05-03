@@ -1,13 +1,15 @@
 package com.hse.miemfinance.controller;
 
 import com.hse.miemfinance.model.dto.FinancialInstrumentDTO;
+import com.hse.miemfinance.model.dto.InstrumentListDTO;
 import com.hse.miemfinance.model.dto.MessageDTO;
 import com.hse.miemfinance.model.dto.UserDTO;
 import com.hse.miemfinance.model.entity.User;
 import com.hse.miemfinance.service.FinancialInstrumentService;
 import com.hse.miemfinance.service.UserService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,6 +28,8 @@ public class UserController {
 
 	private final FinancialInstrumentService instrumentService;
 
+	private final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 	@GetMapping(value = "/info")
 	public ResponseEntity<UserDTO> getUserInfo(Authentication authentication) {
 		Long userId = userService.getUserIdFromAuthentication(authentication);
@@ -34,9 +38,10 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/favorites")
-	public ResponseEntity<List<FinancialInstrumentDTO>> getUserFavorites(Authentication authentication) {
+	public ResponseEntity<InstrumentListDTO> getUserFavorites(Authentication authentication) {
 		Long userId = userService.getUserIdFromAuthentication(authentication);
 		User user = userService.getUser(userId);
+		logger.info("In the getUserFavorites");
 		return ResponseEntity.ok(instrumentService.getFavorites(user));
 	}
 
@@ -56,4 +61,12 @@ public class UserController {
 		instrumentService.deleteFavorite(user, instrumentId);
 		return ResponseEntity.ok().build();
 	}
+
+	@GetMapping(value = "/top")
+	public ResponseEntity<FinancialInstrumentDTO> getTopForToday(Authentication authentication) {
+		Long userId = userService.getUserIdFromAuthentication(authentication);
+		User user = userService.getUser(userId);
+		return ResponseEntity.ok().body(instrumentService.getTopFromUserFavorites(user));
+	}
+
 }

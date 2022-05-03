@@ -1,6 +1,6 @@
 package com.hse.miemfinance.model.entity;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,19 +34,19 @@ public class FinancialInstrument extends AbstractPersistable<Long> {
 
 	@OrderBy("news.publishedDate")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<FinancialInstrumentNews> news;
+	private List<FinancialInstrumentNews> news;
 
 	@OrderBy("updatedDate")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<FinancialInstrumentIndex> index;
+	private List<FinancialInstrumentIndex> index;
 
 	@OrderBy("updatedDate")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<FinancialInstrumentPrice> prices;
+	private List<FinancialInstrumentPrice> prices;
 
 	@OrderBy("updatedDate")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<FinancialInstrumentPrediction> predictions;
+	private List<FinancialInstrumentPrediction> predictions;
 
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.EAGER, orphanRemoval = true)
 	private Set<FinancialInstrumentPrice> tags;

@@ -18,7 +18,7 @@ public class CustomAuthenticationManager implements AuthenticationManager {
 
 		String username = authentication.getName();
 		String pw       = authentication.getCredentials().toString();
-		logger.info("was here" + username.toString() + " , " + pw.toString());
+		logger.info(username + " logged in!");
 
 		return new UsernamePasswordAuthenticationToken(username, pw, authentication.getAuthorities());
 
