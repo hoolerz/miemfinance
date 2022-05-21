@@ -1,5 +1,6 @@
-package com.hse.miemfinance.model.dto;
+package com.hse.miemfinance.model.dto.user;
 
+import com.hse.miemfinance.model.dto.DataDTO;
 import com.hse.miemfinance.model.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

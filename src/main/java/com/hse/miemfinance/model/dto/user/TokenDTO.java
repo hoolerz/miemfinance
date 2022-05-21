@@ -1,4 +1,4 @@
-package com.hse.miemfinance.model.dto;
+package com.hse.miemfinance.model.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtDTO {
+public class TokenDTO {
 
 	private String token;
 

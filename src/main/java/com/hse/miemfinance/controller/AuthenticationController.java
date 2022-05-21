@@ -2,7 +2,7 @@ package com.hse.miemfinance.controller;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.hse.miemfinance.model.dto.JwtDTO;
+import com.hse.miemfinance.model.dto.user.TokenDTO;
 import com.hse.miemfinance.service.UserAuthenticationService;
 import com.hse.miemfinance.service.UserService;
 import com.hse.miemfinance.util.JwtUtil;
@@ -74,7 +74,7 @@ public class AuthenticationController {
 		//usernamePasswordAuthenticationToken.setDetails(details);
 		SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 		final String token = jwtUtil.generateToken(userDetails);
-		return ResponseEntity.ok().body(new JwtDTO(token, username));
+		return ResponseEntity.ok().body(new TokenDTO(token, username));
 	}
 
 	private HttpURLConnection getAccessTokenRequestConnection(String authenticationCode) throws Exception {
@@ -91,7 +91,7 @@ public class AuthenticationController {
 		params.put("client_id", "e0298532-643b-40af-a866-a309039151ea");
 		//params.put("client_secret", "WeM7Q~tWCkIUdWhD0hxGEhTVtbKgNT3tgelI-");
 		params.put("redirect_uri", "miem-invest://oauth/callback");
-		params.put("name", "Freddie");
+		//params.put("redirect_uri", "https://localhost:8443/api/login/callback/");
 		StringBuilder postData = new StringBuilder();
 		for (Map.Entry<String, Object> param : params.entrySet()) {
 			if (postData.length() != 0) {

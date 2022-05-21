@@ -1,6 +1,5 @@
 package com.hse.miemfinance.model.entity;
 
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -14,18 +13,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Getter
 @Setter
 @Entity
-@Table (name = "INSTRUMENT_INDEX")
+@Table(name = "INSTRUMENT_TAG")
 @NoArgsConstructor
-public class FinancialInstrumentIndex extends AbstractPersistable<Long> {
+public class InstrumentTag extends AbstractPersistable<Long> {
 
 	@ManyToOne
 	@JoinColumn(name = "INSTRUMENT_ID")
-	private FinancialInstrument financialInstrument;
+	private Instrument financialInstrument;
 
 	@Column
-	private Long indexValue;
-
-	@Column
-	private LocalDateTime updatedDate;
+	private String tagValue;
 
 }

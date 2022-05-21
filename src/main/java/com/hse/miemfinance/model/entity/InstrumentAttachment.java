@@ -12,16 +12,17 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Getter
 @Setter
 @Entity
-@Table (name = "USER_SELECTED_INSTRUMENT")
+@Table(name = "INSTRUMENT_ATTACHMENT")
 @NoArgsConstructor
-public class UserSelectedInstrument extends AbstractPersistable<Long> {
+public class InstrumentAttachment extends AbstractPersistable<Long> {
+
+	@ManyToOne
+	@JoinColumn(name = "FILE_ENTITY_ID")
+	private FileEntity entity;
 
 	@ManyToOne
 	@JoinColumn(name = "INSTRUMENT_ID")
 	private Instrument financialInstrument;
 
-	@ManyToOne
-	@JoinColumn(name = "USER_ID")
-	private User user;
-
 }
+

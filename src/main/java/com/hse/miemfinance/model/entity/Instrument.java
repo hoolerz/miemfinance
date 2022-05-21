@@ -18,7 +18,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 @Table (name = "FINANCIAL_INSTRUMENT")
 @NoArgsConstructor
-public class FinancialInstrument extends AbstractPersistable<Long> {
+public class Instrument extends AbstractPersistable<Long> {
 
 	@Column
 	private String ticker;
@@ -32,26 +32,25 @@ public class FinancialInstrument extends AbstractPersistable<Long> {
 	@Column
 	private String country;
 
-	@OrderBy("news.publishedDate")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<FinancialInstrumentNews> news;
+	private List<InstrumentNews> news;
 
-	@OrderBy("updatedDate")
+	@OrderBy("updatedDate DESC")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<FinancialInstrumentIndex> index;
+	private List<InstrumentIndex> index;
 
-	@OrderBy("updatedDate")
+	@OrderBy("updatedDate DESC")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<FinancialInstrumentPrice> prices;
+	private List<InstrumentPrice> prices;
 
-	@OrderBy("updatedDate")
+	@OrderBy("updatedDate DESC")
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<FinancialInstrumentPrediction> predictions;
+	private List<InstrumentPrediction> predictions;
 
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.EAGER, orphanRemoval = true)
-	private Set<FinancialInstrumentPrice> tags;
+	private Set<InstrumentPrice> tags;
 
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<FinancialInstrumentAttachment> attachments;
+	private Set<InstrumentAttachment> attachments;
 
 }

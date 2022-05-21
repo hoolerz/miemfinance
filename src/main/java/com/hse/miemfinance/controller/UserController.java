@@ -1,11 +1,12 @@
 package com.hse.miemfinance.controller;
 
-import com.hse.miemfinance.model.dto.FinancialInstrumentDTO;
-import com.hse.miemfinance.model.dto.InstrumentListDTO;
 import com.hse.miemfinance.model.dto.MessageDTO;
-import com.hse.miemfinance.model.dto.UserDTO;
+import com.hse.miemfinance.model.dto.instrument.InstrumentDTO;
+import com.hse.miemfinance.model.dto.instrument.InstrumentInfoDTO;
+import com.hse.miemfinance.model.dto.instrument.InstrumentListDTO;
+import com.hse.miemfinance.model.dto.user.UserDTO;
 import com.hse.miemfinance.model.entity.User;
-import com.hse.miemfinance.service.FinancialInstrumentService;
+import com.hse.miemfinance.service.InstrumentService;
 import com.hse.miemfinance.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -21,12 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/user")
+@RequestMapping(value = "api/user")
 public class UserController {
 
 	private final UserService userService;
 
-	private final FinancialInstrumentService instrumentService;
+	private final InstrumentService instrumentService;
 
 	private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -46,7 +47,7 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/favorites")
-	public ResponseEntity<FinancialInstrumentDTO> addUserFavorite(Authentication authentication,
+	public ResponseEntity<InstrumentInfoDTO> addUserFavorite(Authentication authentication,
 			@RequestParam("instrumentId") Long instrumentId) {
 		Long userId = userService.getUserIdFromAuthentication(authentication);
 		User user = userService.getUser(userId);
@@ -63,7 +64,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/top")
-	public ResponseEntity<FinancialInstrumentDTO> getTopForToday(Authentication authentication) {
+	public ResponseEntity<InstrumentDTO> getTopForToday(Authentication authentication) {
 		Long userId = userService.getUserIdFromAuthentication(authentication);
 		User user = userService.getUser(userId);
 		return ResponseEntity.ok().body(instrumentService.getTopFromUserFavorites(user));

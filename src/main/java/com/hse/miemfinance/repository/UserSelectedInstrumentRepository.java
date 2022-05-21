@@ -1,6 +1,6 @@
 package com.hse.miemfinance.repository;
 
-import com.hse.miemfinance.model.entity.FinancialInstrument;
+import com.hse.miemfinance.model.entity.Instrument;
 import com.hse.miemfinance.model.entity.User;
 import com.hse.miemfinance.model.entity.UserSelectedInstrument;
 import java.util.List;
@@ -15,6 +15,6 @@ public interface UserSelectedInstrumentRepository extends JpaRepository<UserSele
 
 	List<UserSelectedInstrument> findAllByUser(User user);
 
-	Optional<UserSelectedInstrument> findByFinancialInstrumentAndAndUser(FinancialInstrument financialInstrument, User user);
+	Optional<UserSelectedInstrument> findByFinancialInstrumentAndUser(Instrument financialInstrument, User user);
 
 }

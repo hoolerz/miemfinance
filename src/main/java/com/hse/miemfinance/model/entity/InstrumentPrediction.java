@@ -1,5 +1,7 @@
 package com.hse.miemfinance.model.entity;
 
+import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,16 +14,24 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Getter
 @Setter
 @Entity
-@Table(name = "INSTRUMENT_NEWS")
+@Table(name = "INSTRUMENT_PREDICTION")
 @NoArgsConstructor
-public class FinancialInstrumentNews extends AbstractPersistable<Long> {
+public class InstrumentPrediction extends AbstractPersistable<Long> {
 
 	@ManyToOne
 	@JoinColumn(name = "INSTRUMENT_ID")
-	private FinancialInstrument financialInstrument;
+	private Instrument financialInstrument;
 
-	@ManyToOne
-	@JoinColumn(name = "NEWS_ID")
-	private News news;
+	@Column
+	private String type;
+
+	@Column
+	private String prediction;
+
+	@Column
+	private Long certainty;
+
+	@Column
+	private LocalDateTime updatedDate;
 
 }

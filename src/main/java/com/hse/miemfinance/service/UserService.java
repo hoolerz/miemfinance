@@ -1,6 +1,6 @@
 package com.hse.miemfinance.service;
 
-import com.hse.miemfinance.model.dto.UserDTO;
+import com.hse.miemfinance.model.dto.user.UserDTO;
 import com.hse.miemfinance.model.entity.User;
 import com.hse.miemfinance.repository.UserRepository;
 import com.hse.miemfinance.security.MiemUserDetails;

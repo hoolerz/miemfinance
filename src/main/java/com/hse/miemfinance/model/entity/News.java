@@ -32,6 +32,9 @@ public class News extends AbstractPersistable<Long> {
 	private String source;
 
 	@Column
+	private String link;
+
+	@Column
 	private String sentiment;
 
 	@Column
@@ -39,6 +42,6 @@ public class News extends AbstractPersistable<Long> {
 
 	//@OrderBy("financialInstrument.name")
 	@OneToMany(mappedBy = "news", fetch = FetchType.EAGER, orphanRemoval = true)
-	private Set<FinancialInstrumentNews> financialInstruments;
+	private Set<InstrumentNews> financialInstruments;
 
 }
