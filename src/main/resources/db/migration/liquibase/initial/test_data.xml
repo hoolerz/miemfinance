@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
   logicalFilePath="db/migration/liquibase/master.xml">
 
-    <changeSet id="FIN_INSTRUMENT TEST DATA" author="yamikhaylov">
+    <changeSet id="FIN_INSTRUMENT TEST DATA" author="yamikhaylov" runOnChange="true">
         <loadUpdateData tableName="FINANCIAL_INSTRUMENT" primaryKey="ID" separator=";"
           file="db/migration/liquibase/initial/csv/fin_instr.csv">
             <column header="ID" name="ID" type="NUMERIC"/>
@@ -18,6 +18,23 @@
             <column header="ID" name="ID" type="NUMERIC"/>
             <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
             <column header="TAG_VALUE" name="TAG_VALUE" type="STRING"/>
+        </loadUpdateData>
+        <loadUpdateData tableName="INSTRUMENT_INDEX" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/instr_index.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
+            <column header="INDEX_VALUE" name="INDEX_VALUE" type="NUMBER(5, 2)"/>
+            <column header="UPDATED_DATE" name="UPDATED_DATE" type="DATE"/>
+        </loadUpdateData>
+        <loadUpdateData tableName="INSTRUMENT_PRICE" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/instr_price.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
+            <column header="OPEN" name="OPEN" type="NUMBER(5, 2)"/>
+            <column header="HIGH" name="HIGH" type="NUMBER(5, 2)"/>
+            <column header="LOW" name="LOW" type="NUMBER(5, 2)"/>
+            <column header="CLOSE" name="CLOSE" type="NUMBER(5, 2)"/>
+            <column header="UPDATED_DATE" name="UPDATED_DATE" type="DATE"/>
         </loadUpdateData>
     </changeSet>
 
