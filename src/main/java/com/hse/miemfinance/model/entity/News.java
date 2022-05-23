@@ -1,5 +1,6 @@
 package com.hse.miemfinance.model.entity;
 
+import com.hse.miemfinance.model.entity.instrument.InstrumentNews;
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.Column;

@@ -1,7 +1,6 @@
-package com.hse.miemfinance.model.entity;
+package com.hse.miemfinance.model.entity.instrument;
 
-import java.time.LocalDate;
-import javax.persistence.Column;
+import com.hse.miemfinance.model.entity.FileEntity;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,27 +13,17 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Getter
 @Setter
 @Entity
-@Table(name = "INSTRUMENT_PRICE")
+@Table(name = "INSTRUMENT_ATTACHMENT")
 @NoArgsConstructor
-public class InstrumentPrice extends AbstractPersistable<Long> {
+public class InstrumentAttachment extends AbstractPersistable<Long> {
+
+	@ManyToOne
+	@JoinColumn(name = "FILE_ENTITY_ID")
+	private FileEntity entity;
 
 	@ManyToOne
 	@JoinColumn(name = "INSTRUMENT_ID")
 	private Instrument financialInstrument;
 
-	@Column
-	private Double open;
-
-	@Column
-	private Double close;
-
-	@Column
-	private Double high;
-
-	@Column
-	private Double low;
-
-	@Column
-	private LocalDate updatedDate;
-
 }
+

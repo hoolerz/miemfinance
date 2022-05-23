@@ -1,9 +1,9 @@
 package com.hse.miemfinance.service;
 
 import com.hse.miemfinance.model.dto.news.NewsDTO;
-import com.hse.miemfinance.model.entity.Instrument;
-import com.hse.miemfinance.model.entity.InstrumentNews;
 import com.hse.miemfinance.model.entity.News;
+import com.hse.miemfinance.model.entity.instrument.Instrument;
+import com.hse.miemfinance.model.entity.instrument.InstrumentNews;
 import com.hse.miemfinance.repository.NewsRepository;
 import java.time.LocalDateTime;
 import java.util.List;

@@ -1,5 +1,7 @@
-package com.hse.miemfinance.model.entity;
+package com.hse.miemfinance.model.entity.instrument;
 
+import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,16 +14,27 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Getter
 @Setter
 @Entity
-@Table (name = "USER_SELECTED_INSTRUMENT")
+@Table(name = "INSTRUMENT_PRICE")
 @NoArgsConstructor
-public class UserSelectedInstrument extends AbstractPersistable<Long> {
+public class InstrumentPrice extends AbstractPersistable<Long> {
 
 	@ManyToOne
 	@JoinColumn(name = "INSTRUMENT_ID")
 	private Instrument financialInstrument;
 
-	@ManyToOne
-	@JoinColumn(name = "USER_ID")
-	private User user;
+	@Column
+	private Double open;
+
+	@Column
+	private Double close;
+
+	@Column
+	private Double high;
+
+	@Column
+	private Double low;
+
+	@Column
+	private LocalDate updatedDate;
 
 }

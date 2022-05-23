@@ -1,4 +1,4 @@
-package com.hse.miemfinance.model.entity;
+package com.hse.miemfinance.model.entity.instrument;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,7 +1,7 @@
 package com.hse.miemfinance.controller;
 
 import com.hse.miemfinance.model.dto.news.NewsListDTO;
-import com.hse.miemfinance.model.entity.Instrument;
+import com.hse.miemfinance.model.entity.instrument.Instrument;
 import com.hse.miemfinance.service.FileService;
 import com.hse.miemfinance.service.InstrumentService;
 import com.hse.miemfinance.service.NewsService;

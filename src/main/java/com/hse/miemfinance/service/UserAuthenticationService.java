@@ -1,6 +1,6 @@
 package com.hse.miemfinance.service;
 
-import com.hse.miemfinance.model.entity.User;
+import com.hse.miemfinance.model.entity.user.User;
 import com.hse.miemfinance.security.MiemUserDetails;
 import java.util.Collections;
 import lombok.RequiredArgsConstructor;

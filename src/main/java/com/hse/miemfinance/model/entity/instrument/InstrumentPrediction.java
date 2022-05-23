@@ -1,6 +1,6 @@
-package com.hse.miemfinance.model.entity;
+package com.hse.miemfinance.model.entity.instrument;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -29,9 +29,9 @@ public class InstrumentPrediction extends AbstractPersistable<Long> {
 	private String prediction;
 
 	@Column
-	private Long certainty;
+	private Double certainty;
 
 	@Column
-	private LocalDateTime updatedDate;
+	private LocalDate updatedDate;
 
 }

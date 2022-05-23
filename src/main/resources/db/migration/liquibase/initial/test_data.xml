@@ -36,6 +36,15 @@
             <column header="CLOSE" name="CLOSE" type="NUMBER(5, 2)"/>
             <column header="UPDATED_DATE" name="UPDATED_DATE" type="DATE"/>
         </loadUpdateData>
+        <loadUpdateData tableName="INSTRUMENT_PREDICTION" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/instr_prediction.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
+            <column header="TYPE" name="TYPE" type="STRING"/>
+            <column header="PREDICTION" name="PREDICTION" type="STRING"/>
+            <column header="CERTAINTY" name="CERTAINTY" type="NUMBER(5, 2)"/>
+            <column header="UPDATED_DATE" name="UPDATED_DATE" type="DATE"/>
+        </loadUpdateData>
     </changeSet>
 
     <changeSet id="NEWS TEST DATA" author="yamikhaylov">
@@ -54,6 +63,16 @@
             <column header="ID" name="ID" type="NUMERIC"/>
             <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
             <column header="NEWS_ID" name="NEWS_ID" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+
+    <changeSet id="DICT_ITEM TEST DATA" author="yamikhaylov">
+        <loadUpdateData tableName="DICTIONARY_ITEM" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/dict_item.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="TYPE" name="TYPE" type="STRING"/>
+            <column header="VALUE" name="VALUE" type="STRING"/>
+            <column header="TEXT" name="TEXT" type="STRING"/>
         </loadUpdateData>
     </changeSet>
 

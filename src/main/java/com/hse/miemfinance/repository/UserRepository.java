@@ -1,6 +1,6 @@
 package com.hse.miemfinance.repository;
 
-import com.hse.miemfinance.model.entity.User;
+import com.hse.miemfinance.model.entity.user.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

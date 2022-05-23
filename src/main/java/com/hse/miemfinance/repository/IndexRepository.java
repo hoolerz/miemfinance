@@ -1,10 +1,11 @@
 package com.hse.miemfinance.repository;
 
-import com.hse.miemfinance.model.entity.InstrumentIndex;
 import com.hse.miemfinance.model.entity.InstrumentIndex_;
-import com.hse.miemfinance.model.entity.User;
-import com.hse.miemfinance.model.entity.UserSelectedInstrument;
 import com.hse.miemfinance.model.entity.UserSelectedInstrument_;
+import com.hse.miemfinance.model.entity.instrument.Instrument;
+import com.hse.miemfinance.model.entity.instrument.InstrumentIndex;
+import com.hse.miemfinance.model.entity.user.User;
+import com.hse.miemfinance.model.entity.user.UserSelectedInstrument;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.Expression;
@@ -12,7 +13,9 @@ import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface IndexRepository extends JpaRepository<InstrumentIndex, Long>,
 		JpaSpecificationExecutor<InstrumentIndex>  {
 
@@ -46,6 +49,15 @@ public interface IndexRepository extends JpaRepository<InstrumentIndex, Long>,
 			return cb.and(
 					cb.equal(root.get(InstrumentIndex_.UPDATED_DATE), dateSubquery),
 					root.get(InstrumentIndex_.FINANCIAL_INSTRUMENT).in(instrumentSubquery)
+			);
+		});
+	}
+
+	default List<InstrumentIndex> getAllForInstrument(Instrument instrument) {
+		return findAll( (root,cq, cb) -> {
+			cq.orderBy(cb.desc(root.get(InstrumentIndex_.UPDATED_DATE)));
+			return cb.and(
+					cb.equal(root.get(InstrumentIndex_.FINANCIAL_INSTRUMENT), instrument)
 			);
 		});
 	}

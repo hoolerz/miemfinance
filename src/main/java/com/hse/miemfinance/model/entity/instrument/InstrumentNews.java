@@ -1,5 +1,6 @@
-package com.hse.miemfinance.model.entity;
+package com.hse.miemfinance.model.entity.instrument;
 
+import com.hse.miemfinance.model.entity.News;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;

@@ -1,0 +1,22 @@
+ID;TYPE;VALUE;TEXT
+1;COUNTRY;RU;Россия
+2;COUNTRY;US;США
+3;COUNTRY;GB;Великобритания
+4;COUNTRY;DE;Германия
+5;COUNTRY;FR;Франция
+6;QUICK_FILTER;RUSSIAN;Российские
+7;QUICK_FILTER;FOREIGN;Зарубежные
+8;QUICK_FILTER;BLUE_CHIPS;Голубые фишки
+9;QUICK_FILTER;BANKING;Банки
+10;QUICK_FILTER;OIL;Нефтегазовый сектор
+11;TAG;RUSSIAN;Российские
+12;TAG;FOREIGN;Зарубежные
+13;TAG;BLUE_CHIPS;Голубые фишки
+14;TAG;FINANCIAL;Финансы
+15;TAG;TECHNOLOGY;Высокотехнологичные
+16;TAG;INDUSTRIAL;Промышленность
+17;TAG;CONSUMER;Потребительский сектор
+18;TAG;OIL;Нефтегазовый сектор
+19;TAG;SEMICONDUCTORS;Полупроводники
+20;TAG;BANKING;Банки
+21;TAG;RETAIL;Ритейл

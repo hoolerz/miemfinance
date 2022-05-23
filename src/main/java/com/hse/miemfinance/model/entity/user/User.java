@@ -1,4 +1,4 @@
-package com.hse.miemfinance.model.entity;
+package com.hse.miemfinance.model.entity.user;
 
 import java.util.Set;
 import javax.persistence.Column;

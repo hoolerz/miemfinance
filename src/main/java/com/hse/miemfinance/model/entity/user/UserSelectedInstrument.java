@@ -1,9 +1,9 @@
-package com.hse.miemfinance.model.entity;
+package com.hse.miemfinance.model.entity.user;
 
+import com.hse.miemfinance.model.entity.instrument.Instrument;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +13,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Getter
 @Setter
 @Entity
-@Table (name = "USER_ATTACHMENT")
+@Table (name = "USER_SELECTED_INSTRUMENT")
 @NoArgsConstructor
-public class UserAttachment extends AbstractPersistable<Long> {
+public class UserSelectedInstrument extends AbstractPersistable<Long> {
 
 	@ManyToOne
-	@JoinColumn(name = "FILE_ENTITY_ID")
-	private FileEntity entity;
+	@JoinColumn(name = "INSTRUMENT_ID")
+	private Instrument financialInstrument;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "USER_ID")
 	private User user;
 

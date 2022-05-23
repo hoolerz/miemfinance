@@ -2,8 +2,8 @@ package com.hse.miemfinance.model.dto.news;
 
 import com.hse.miemfinance.model.dto.DataDTO;
 import com.hse.miemfinance.model.dto.instrument.InstrumentDTO;
-import com.hse.miemfinance.model.entity.InstrumentNews;
 import com.hse.miemfinance.model.entity.News;
+import com.hse.miemfinance.model.entity.instrument.InstrumentNews;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
