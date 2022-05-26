@@ -1,4 +1,4 @@
-package com.hse.miemfinance.security;
+package com.hse.miemfinance.config.security;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

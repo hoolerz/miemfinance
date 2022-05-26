@@ -89,11 +89,13 @@ public class InstrumentService {
 	public InstrumentInfoDTO addFavorite(Long instrumentId) {
 		User user = userService.getCurrentUser();
 		Instrument instrument = instrumentRepository.findById(instrumentId).orElse(null);
-		UserSelectedInstrument selectedInstrument = new UserSelectedInstrument();
-		selectedInstrument.setUser(user);
-		selectedInstrument.setFinancialInstrument(instrument);
-		userSelectedInstrumentRepository.save(selectedInstrument);
 		InstrumentInfoDTO dto = new InstrumentInfoDTO(instrument);
+		if (!userSelectedInstrumentRepository.existsByFinancialInstrumentAndAndUser(instrument, user)) {
+			UserSelectedInstrument selectedInstrument = new UserSelectedInstrument();
+			selectedInstrument.setUser(user);
+			selectedInstrument.setFinancialInstrument(instrument);
+			userSelectedInstrumentRepository.save(selectedInstrument);
+		}
 		dto.setCurrency(getInstrumentCurrency(instrument));
 		dto.setIsFavorite(checkIsFavorite(instrument));
 		return dto;
@@ -140,6 +142,13 @@ public class InstrumentService {
 
 	public List<InstrumentDTO> getByFilter(String filter) {
 		List<Instrument> instruments = searchService.searchByFilter(filter);
+		return instruments.stream()
+				.map(this::dtoFromInstrumentWithCurrency)
+				.collect(Collectors.toList());
+	}
+
+	public List<InstrumentDTO> getBySearch(String searchTerm) {
+		List<Instrument> instruments = searchService.searchByTerms(searchTerm);
 		return instruments.stream()
 				.map(this::dtoFromInstrumentWithCurrency)
 				.collect(Collectors.toList());

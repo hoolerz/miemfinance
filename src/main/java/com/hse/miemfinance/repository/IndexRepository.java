@@ -1,11 +1,11 @@
 package com.hse.miemfinance.repository;
 
-import com.hse.miemfinance.model.entity.InstrumentIndex_;
-import com.hse.miemfinance.model.entity.UserSelectedInstrument_;
 import com.hse.miemfinance.model.entity.instrument.Instrument;
 import com.hse.miemfinance.model.entity.instrument.InstrumentIndex;
+import com.hse.miemfinance.model.entity.instrument.InstrumentIndex_;
 import com.hse.miemfinance.model.entity.user.User;
 import com.hse.miemfinance.model.entity.user.UserSelectedInstrument;
+import com.hse.miemfinance.model.entity.user.UserSelectedInstrument_;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.Expression;

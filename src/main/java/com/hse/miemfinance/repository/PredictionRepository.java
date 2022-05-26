@@ -1,8 +1,8 @@
 package com.hse.miemfinance.repository;
 
-import com.hse.miemfinance.model.entity.InstrumentPrediction_;
 import com.hse.miemfinance.model.entity.instrument.Instrument;
 import com.hse.miemfinance.model.entity.instrument.InstrumentPrediction;
+import com.hse.miemfinance.model.entity.instrument.InstrumentPrediction_;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.criteria.Expression;

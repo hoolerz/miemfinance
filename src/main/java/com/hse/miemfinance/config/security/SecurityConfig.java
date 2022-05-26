@@ -1,5 +1,6 @@
-package com.hse.miemfinance.security;
+package com.hse.miemfinance.config.security;
 
+import com.hse.miemfinance.security.JwtTokenFilter;
 import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
 import java.text.ParseException;

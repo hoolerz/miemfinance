@@ -65,9 +65,9 @@ public class InstrumentController {
 
 	@GetMapping(value = "/search/text")
 	public ResponseEntity<InstrumentListDTO> getFromSearch(
-			@RequestParam(value = "size", required = false) Integer size) {
+			@RequestParam(value = "searchTerms") String terms) {
 		InstrumentListDTO dto = new InstrumentListDTO();
-		dto.setInstruments(instrumentService.getAllInstruments());
+		dto.setInstruments(instrumentService.getBySearch(terms));
 		return ResponseEntity.ok().body(dto);
 	}
 

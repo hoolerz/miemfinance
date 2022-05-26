@@ -1,10 +1,10 @@
 package com.hse.miemfinance.repository;
 
-import com.hse.miemfinance.model.entity.InstrumentNews_;
 import com.hse.miemfinance.model.entity.News;
 import com.hse.miemfinance.model.entity.News_;
 import com.hse.miemfinance.model.entity.instrument.Instrument;
 import com.hse.miemfinance.model.entity.instrument.InstrumentNews;
+import com.hse.miemfinance.model.entity.instrument.InstrumentNews_;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;

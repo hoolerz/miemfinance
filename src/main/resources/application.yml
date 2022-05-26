@@ -46,7 +46,24 @@ spring:
             user-info-uri: https://graph.microsoft.com/oidc/userinfo
             jwks-uri: https://login.microsoftonline.com/common/discovery/v2.0/keys
             userNameAttribute: sub
+  jpa:
+    properties:
+      hibernate:
+        search:
+          enabled: ${MIEMFINANCE_HSEARCH_ENABLED:true}
+          backend:
+            analysis:
+              configurer: bean:miemAnalyzer
+            directory:
+              root: ./src/main/resources/db/index/lucene/
 
-
+hibernate:
+  search:
+    backend:
+      directory:
+        root:
 miemfinance:
-  sso-enabled: ${MIEMFINANCE_SSO_ENBLED:true}
+  sso-enabled: ${MIEMFINANCE_SSO_ENABLED:true}
+  search:
+    is-enabled: ${MIEMFINANCE_HSEARCH_ENABLED:true}
+    initial-indexing-enabled: ${MIEMFINANCE_HSEARCH_INITIAL_INDEXING:true}
