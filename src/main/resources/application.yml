@@ -67,3 +67,8 @@ miemfinance:
   search:
     is-enabled: ${MIEMFINANCE_HSEARCH_ENABLED:true}
     initial-indexing-enabled: ${MIEMFINANCE_HSEARCH_INITIAL_INDEXING:true}
+  storage:
+    access-key: ${MIEMFINANCE_STORAGE_ACCESS_KEY:DLTcaJR6C16c}
+    secret-key: ${MIEMFINANCE_STORAGE_SECRET_KEY:N2jkevoAzumN}
+    endpoint: ${MIEMFINANCE_STORAGE_ENDPOINT:http://localhost:9000}
+    bucket: ${MIEMFINANCE_STORAGE_BUCKET:miemfinancedev}

@@ -76,4 +76,19 @@
         </loadUpdateData>
     </changeSet>
 
+    <changeSet id="FILE TEST DATA" author="yamikhaylov">
+        <loadUpdateData tableName="FILE_ENTITY" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/file_entity.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="NAME" name="NAME" type="STRING"/>
+            <column header="CONTENT_TYPE" name="CONTENT_TYPE" type="STRING"/>
+        </loadUpdateData>
+        <loadUpdateData tableName="INSTRUMENT_ATTACHMENT" primaryKey="ID" separator=";"
+          file="db/migration/liquibase/initial/csv/instr_attachment.csv">
+            <column header="ID" name="ID" type="NUMERIC"/>
+            <column header="INSTRUMENT_ID" name="INSTRUMENT_ID" type="NUMERIC"/>
+            <column header="FILE_ENTITY_ID" name="FILE_ENTITY_ID" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+
 </databaseChangeLog>

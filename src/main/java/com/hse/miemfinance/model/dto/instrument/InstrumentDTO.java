@@ -5,6 +5,7 @@ import com.hse.miemfinance.model.entity.instrument.Instrument;
 import com.hse.miemfinance.model.entity.instrument.InstrumentIndex;
 import com.hse.miemfinance.model.entity.instrument.InstrumentPrice;
 import java.util.Comparator;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,9 +29,13 @@ public class InstrumentDTO extends DataDTO {
 		super(String.valueOf(entity.getId()));
 		this.name = entity.getName();
 		this.ticker = entity.getTicker();
-		this.attachmentId = "0";
 		getPriceFromEntity(entity);
 		getIndexFromEntity(entity);
+		Optional.ofNullable(entity.getAttachment())
+				.ifPresentOrElse(
+						attachment -> this.attachmentId = String.valueOf(attachment.getEntity().getId()),
+						() -> this.attachmentId = "0"
+				);
 	}
 
 	public void setCurrency(String currency) {
@@ -42,7 +47,10 @@ public class InstrumentDTO extends DataDTO {
 				.comparing(InstrumentPrice::getUpdatedDate, Comparator.nullsLast(Comparator.reverseOrder()));
 		entity.getPrices().stream()
 				.min(comparator)
-				.ifPresent(price -> this.price = String.valueOf(price.getClose()));
+				.ifPresentOrElse(
+						price -> this.price = String.valueOf(price.getClose()),
+						() -> this.price = "0"
+				);
 	}
 
 	private void getIndexFromEntity(Instrument entity) {
@@ -50,7 +58,10 @@ public class InstrumentDTO extends DataDTO {
 				.comparing(InstrumentIndex::getUpdatedDate, Comparator.nullsLast(Comparator.reverseOrder()));
 		entity.getIndex().stream()
 				.min(comparator)
-				.ifPresent(index -> this.index = index.getIndexValue());
+				.ifPresentOrElse(
+						index -> this.index = index.getIndexValue(),
+						() -> this.index = 0L
+				);
 	}
 
 }

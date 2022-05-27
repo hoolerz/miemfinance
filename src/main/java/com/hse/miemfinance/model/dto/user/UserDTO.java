@@ -2,6 +2,7 @@ package com.hse.miemfinance.model.dto.user;
 
 import com.hse.miemfinance.model.dto.DataDTO;
 import com.hse.miemfinance.model.entity.user.User;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +25,11 @@ public class UserDTO extends DataDTO {
 		this.username = entity.getUsername();
 		this.email = entity.getEmail();
 		this.preferredName = entity.getPreferredName();
-		//this.attachmentId = Optional.ofNullable(entity.getAttachment()).get().getEntity().getId();
+		Optional.ofNullable(entity.getAttachment())
+				.ifPresentOrElse(
+						attachment -> this.attachmentId = String.valueOf(attachment.getEntity().getId()),
+						() -> this.attachmentId = "0"
+				);
 	}
 
 }

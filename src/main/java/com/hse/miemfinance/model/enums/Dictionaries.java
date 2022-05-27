@@ -57,6 +57,7 @@ public class Dictionaries {
 	public static class ExceptionMessages {
 		public static final String NOT_FOUND = "Specified entity not found";
 		public static final String ALREADY_EXISTS = "Specified entity already exists";
+		public static final String WRONG_REQUEST = "Wrong request";
 	}
 
 }

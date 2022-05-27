@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -61,7 +62,7 @@ public class Instrument extends AbstractPersistable<Long> {
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.EAGER, orphanRemoval = true)
 	private Set<InstrumentPrice> tags;
 
-	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
-	private Set<InstrumentAttachment> attachments;
+	@OneToOne(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
+	private InstrumentAttachment attachment;
 
 }
