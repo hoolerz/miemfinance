@@ -1,6 +1,25 @@
 version: '2.1'
 
 services:
+
+  miem_finance:
+    image: 'miemfinance:latest'
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: miem_finance
+    depends_on:
+      - postgres_miem
+      - minio_miem
+    ports:
+      - 8443:8443
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres_miem:5432/postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - MIEMFINANCE_APP_INITIALIZATION=false
+      - MIEMFINANCE_SSO_ENABLED=true
+
   postgres_miem:
     image: postgres:14.0
     environment:
@@ -11,7 +30,7 @@ services:
       - 5430:5432
 
   minio_miem:
-    image: bitnami/minio:latest
+    image: bitnami/minio:2021.6.17
     expose:
       - 9000
     ports:
