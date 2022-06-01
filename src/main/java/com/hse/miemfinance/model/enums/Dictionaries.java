@@ -54,10 +54,24 @@ public class Dictionaries {
 	}
 
 	@UtilityClass
+	public static class Exchanges {
+		public static final String MOEX = "moex";
+		public static final String NYSE = "nyse";
+		public static final String BINANCE = "binance";
+		public static final String NASDAQ = "nasdaq";
+	}
+
+	@UtilityClass
 	public static class ExceptionMessages {
 		public static final String NOT_FOUND = "Specified entity not found";
 		public static final String ALREADY_EXISTS = "Specified entity already exists";
 		public static final String WRONG_REQUEST = "Wrong request";
+	}
+
+	@UtilityClass
+	public static class Predictions {
+		public static final String BARRIER = "BARRIER";
+		public static final String BINARY = "BINARY";
 	}
 
 }

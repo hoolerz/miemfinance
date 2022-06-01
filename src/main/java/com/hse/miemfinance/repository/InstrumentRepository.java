@@ -18,4 +18,6 @@ public interface InstrumentRepository
 
 	List<Instrument> findAllByCountry(String countryCode);
 
+	boolean existsByTicker(String ticker);
+
 }

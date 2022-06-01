@@ -15,6 +15,8 @@ public interface TagRepository extends JpaRepository<InstrumentTag, Long>,
 
 	List<InstrumentTag> findAllByTagValue(String tagValue);
 
+	List<InstrumentTag> findAllByTicker(String ticker);
+
 	boolean existsByFinancialInstrumentAndTagValue(Instrument instrument, String tag);
 
 }

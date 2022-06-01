@@ -4,8 +4,8 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"
   logicalFilePath="db/migration/liquibase/master.xml">
 
-    <changeSet id="HIBERNATE_SEQUENCE SEQUENCE" author="yamikhaylov">
-        <createSequence maxValue="9223372036854775807" sequenceName="HIBERNATE_SEQUENCE" startValue="1"/>
+    <changeSet id="HIBERNATE_SEQUENCE SEQUENCE" author="yamikhaylov" runOnChange="true">
+        <createSequence maxValue="9223372036854775807" sequenceName="HIBERNATE_SEQUENCE" startValue="100000"/>
     </changeSet>
 
     <changeSet id="ADDED USER TABLE" author="yamikhaylov" runOnChange="true">
@@ -136,6 +136,9 @@
             </column>
             <column name="INSTRUMENT_ID" type="NUMBER(19, 0)">
                 <constraints foreignKeyName="INSTR_TAG_ID_FK" referencedTableName="FINANCIAL_INSTRUMENT"/>
+            </column>
+            <column name="TICKER" type="varchar(255)">
+                <constraints nullable="false"/>
             </column>
             <column name="TAG_VALUE" type="varchar(255)"/>
         </createTable>

@@ -1,5 +1,8 @@
 package com.hse.miemfinance.model.entity.instrument;
 
+import com.hse.miemfinance.model.dto.integration.InstrumentIntegrationDTO;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
@@ -60,9 +63,55 @@ public class Instrument extends AbstractPersistable<Long> {
 	private List<InstrumentPrediction> predictions;
 
 	@OneToMany(mappedBy = "financialInstrument", fetch = FetchType.EAGER, orphanRemoval = true)
-	private Set<InstrumentPrice> tags;
+	private Set<InstrumentTag> tags;
 
 	@OneToOne(mappedBy = "financialInstrument", fetch = FetchType.LAZY, orphanRemoval = true)
 	private InstrumentAttachment attachment;
+
+	public Instrument(InstrumentIntegrationDTO dto) {
+		this.ticker = dto.getTicker();
+		this.name = dto.getName();
+		this.description = dto.getText();
+	}
+
+	public void addPrice(InstrumentPrice price) {
+		price.setFinancialInstrument(this);
+		if (this.prices == null) {
+			prices = new ArrayList<>();
+		}
+		this.prices.add(price);
+	}
+
+	public void addIndex(InstrumentIndex index) {
+		index.setFinancialInstrument(this);
+		if (this.index == null) {
+			this.index = new ArrayList<>();
+		}
+		this.index.add(index);
+	}
+
+	public void addPrediction(InstrumentPrediction prediction) {
+		prediction.setFinancialInstrument(this);
+		if (this.predictions == null) {
+			predictions = new ArrayList<>();
+		}
+		this.predictions.add(prediction);
+	}
+
+	public void addNews(InstrumentNews news) {
+		news.setFinancialInstrument(this);
+		if (this.news == null) {
+			this.news = new ArrayList<>();
+		}
+		this.news.add(news);
+	}
+
+	public void addTag(InstrumentTag tag) {
+		tag.setFinancialInstrument(this);
+		if (this.tags == null) {
+			this.tags = new HashSet<>();
+		}
+		this.tags.add(tag);
+	}
 
 }

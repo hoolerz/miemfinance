@@ -25,4 +25,9 @@ public class InstrumentNews extends AbstractPersistable<Long> {
 	@JoinColumn(name = "NEWS_ID")
 	private News news;
 
+	public InstrumentNews(News news, Instrument instrument) {
+		this.news = news;
+		this.financialInstrument = instrument;
+	}
+
 }

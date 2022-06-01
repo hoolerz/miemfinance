@@ -2,7 +2,6 @@ package com.hse.miemfinance.controller;
 
 import com.hse.miemfinance.model.dto.news.NewsListDTO;
 import com.hse.miemfinance.model.entity.instrument.Instrument;
-import com.hse.miemfinance.service.FileService;
 import com.hse.miemfinance.service.InstrumentService;
 import com.hse.miemfinance.service.NewsService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +23,10 @@ public class NewsController {
 
 	private final InstrumentService instrumentService;
 
-	private final FileService fileService;
-
 	@RequestMapping(method = RequestMethod.GET, value = "/all")
 	public ResponseEntity<NewsListDTO> getAll() {
 		NewsListDTO dto = new NewsListDTO();
-		dto.setNews(newsService.getAllNews());
+		dto.setNews(newsService.getAllNews()); // TODO: yamikhaylov 01.06.2022 add pagination
 		return ResponseEntity.ok().body(dto);
 	}
 

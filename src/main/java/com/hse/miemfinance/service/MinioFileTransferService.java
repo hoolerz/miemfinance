@@ -8,6 +8,7 @@ import io.minio.GetObjectArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.RemoveObjectArgs;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,14 @@ public class MinioFileTransferService {
 		}
 	}
 
+	public String uploadFile(byte[] content, String fileName, String contentType) {
+		try {
+			return uploadFileFromBytes(content, fileName, contentType, storageProperties.getBucket());
+		} catch (Exception e) {
+			throw new BusinessException().withMessage("Faf");
+		}
+	}
+
 	public void deleteFile(FileEntity entity) {
 		deleteFile(storageProperties.getBucket(), entity);
 	}
@@ -69,6 +78,20 @@ public class MinioFileTransferService {
 						.contentType(fileType)
 						.build());
 		
+		return fileName;
+	}
+
+	@SneakyThrows
+	private String uploadFileFromBytes(byte[] content, String fileName, String contentType, String bucketName) {
+		InputStream inputStream = new ByteArrayInputStream(content);
+		minioClient.putObject(
+				PutObjectArgs.builder()
+						.bucket(bucketName)
+						.object(fileName)
+						.stream(inputStream, content.length, -1)
+						.contentType(contentType)
+						.build());
+
 		return fileName;
 	}
 

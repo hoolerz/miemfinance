@@ -13,4 +13,8 @@ public class ApplicationProperties {
 
 	private Boolean ssoEnabled;
 
+	private String parserHost;
+
+	private Boolean initializeApplication;
+
 }

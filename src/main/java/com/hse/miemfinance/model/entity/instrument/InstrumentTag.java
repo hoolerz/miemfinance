@@ -22,6 +22,9 @@ public class InstrumentTag extends AbstractPersistable<Long> {
 	private Instrument financialInstrument;
 
 	@Column
+	private String ticker;
+
+	@Column
 	private String tagValue;
 
 }

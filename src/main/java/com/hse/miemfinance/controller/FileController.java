@@ -35,8 +35,8 @@ public class FileController {
 	}
 
 	@DeleteMapping(value = "/api/user/file")
-	public ResponseEntity<Object> deleteFile(@RequestParam("fileId") Long fileId) {
-		fileService.deleteFile(fileId);
+	public ResponseEntity<Object> deleteFile() {
+		fileService.deleteFile();
 		return ResponseEntity.ok().body(null);
 	}
 

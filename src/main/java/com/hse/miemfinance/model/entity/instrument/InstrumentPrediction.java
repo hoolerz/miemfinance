@@ -1,5 +1,6 @@
 package com.hse.miemfinance.model.entity.instrument;
 
+import com.hse.miemfinance.model.dto.integration.PredictionIntegrationDTO;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,5 +34,10 @@ public class InstrumentPrediction extends AbstractPersistable<Long> {
 
 	@Column
 	private LocalDate updatedDate;
+
+	public InstrumentPrediction(PredictionIntegrationDTO integrationDTO, Instrument instrument) {
+		this.updatedDate = integrationDTO.getDate().toLocalDate();
+		this.financialInstrument = instrument;
+	}
 
 }

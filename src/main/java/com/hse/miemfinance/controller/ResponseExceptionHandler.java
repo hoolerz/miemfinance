@@ -21,4 +21,5 @@ public class ResponseExceptionHandler
 		return handleExceptionInternal(ex, bodyOfResponse,
 				new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
+
 }

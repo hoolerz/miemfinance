@@ -5,6 +5,7 @@
   logicalFilePath="db/migration/liquibase/master.xml">
 
   <include file="initial/core.xml" relativeToChangelogFile="true"/>
-  <include file="initial/test_data.xml" relativeToChangelogFile="true"/>
+<!--  <include file="initial/test_data.xml" relativeToChangelogFile="true"/>-->
+  <include file="releases/010/001_tags.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

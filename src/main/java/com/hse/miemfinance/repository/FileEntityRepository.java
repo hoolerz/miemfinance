@@ -11,4 +11,6 @@ public interface FileEntityRepository extends JpaRepository<FileEntity, Long>, J
 
 	Optional<FileEntity> findByName(String name);
 
+	boolean existsByNameContaining(String name);
+
 }

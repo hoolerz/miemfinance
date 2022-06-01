@@ -20,6 +20,7 @@ public class NewsService {
 	public List<NewsDTO> getAllNews() {
 		List<News> news = newsRepository.findAllByOrderByPublishedDateDesc();
 		return news.stream()
+				.limit(75) // todo: yamikhaylov 1.06.2022 refactor
 				.map(NewsDTO::new)
 				.collect(Collectors.toList());
 	}
@@ -33,6 +34,7 @@ public class NewsService {
 
 	public List<NewsDTO> getAllForInstrument(Instrument instrument) {
 		return instrument.getNews().stream()
+				.limit(70) // todo: yamikhaylov 1.06.2022 refactor
 				.map(InstrumentNews::getNews)
 				.map(NewsDTO::new)
 				.collect(Collectors.toList());

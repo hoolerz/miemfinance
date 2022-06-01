@@ -57,13 +57,9 @@ spring:
             directory:
               root: ./src/main/resources/db/index/lucene/
 
-hibernate:
-  search:
-    backend:
-      directory:
-        root:
 miemfinance:
   sso-enabled: ${MIEMFINANCE_SSO_ENABLED:true}
+  initialize-application: ${MIEMFINANCE_APP_INITIALIZATION:false}
   search:
     is-enabled: ${MIEMFINANCE_HSEARCH_ENABLED:true}
     initial-indexing-enabled: ${MIEMFINANCE_HSEARCH_INITIAL_INDEXING:true}
@@ -72,3 +68,4 @@ miemfinance:
     secret-key: ${MIEMFINANCE_STORAGE_SECRET_KEY:N2jkevoAzumN}
     endpoint: ${MIEMFINANCE_STORAGE_ENDPOINT:http://localhost:9000}
     bucket: ${MIEMFINANCE_STORAGE_BUCKET:miemfinancedev}
+  parser-host: ${MIEMFINANCE_PARSER_HOST:http://172.16.1.164:5001}

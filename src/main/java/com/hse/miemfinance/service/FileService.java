@@ -33,6 +33,10 @@ public class FileService {
 
 	private final UserService userService;
 
+	public boolean exists(String filename) {
+		return fileEntityRepository.existsByNameContaining(filename);
+	}
+
 	public HttpEntity<byte[]> downloadFile(Long fileId) {
 		FileEntity fileEntity = fileEntityRepository.findById(fileId).orElse(null);
 		if (fileEntity == null) {
@@ -63,9 +67,19 @@ public class FileService {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void deleteFile(Long fileId) {
-		FileEntity file = fileEntityRepository.findById(fileId).orElse(null);
+	public FileEntity uploadFile(String filename, String contentType, byte[] content) {
+		return createFileEntity(filename, contentType, content);
+	}
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void deleteFile() {
 		User user = userService.getCurrentUser();
+		UserAttachment attachment = userAttachmentRepository.findByUser(user).orElse(null);
+		if (attachment == null) {
+			throw new BusinessException().withMessage(NOT_FOUND);
+		}
+		FileEntity file = attachment.getEntity();
+
 		if (file == null) {
 			throw new BusinessException().withMessage(NOT_FOUND);
 		}
@@ -82,6 +96,16 @@ public class FileService {
 		fileEntityRepository.save(entity);
 		String s3FileName = String.format("users/%d/%s", entity.getId(), file.getOriginalFilename());
 		entity.setName(minioFileTransferService.uploadFile(file, s3FileName));
+		return entity;
+	}
+
+	private FileEntity createFileEntity(String filename, String contentType, byte[] content) {
+		FileEntity entity = new FileEntity();
+		entity.setContentType(contentType);
+		entity.setName(filename);
+		fileEntityRepository.save(entity);
+		String s3FileName = String.format("instruments/%d/%s", entity.getId(), filename);
+		entity.setName(minioFileTransferService.uploadFile(content, s3FileName, contentType));
 		return entity;
 	}
 
@@ -115,6 +139,4 @@ public class FileService {
 		}
 	}
 
-
-	//todo: yamikhaylov 18.03.22 - add MINio file storage
 }

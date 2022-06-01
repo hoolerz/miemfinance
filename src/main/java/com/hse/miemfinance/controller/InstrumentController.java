@@ -5,6 +5,7 @@ import com.hse.miemfinance.model.dto.instrument.InstrumentIndexDTO;
 import com.hse.miemfinance.model.dto.instrument.InstrumentInfoDTO;
 import com.hse.miemfinance.model.dto.instrument.InstrumentListDTO;
 import com.hse.miemfinance.service.InstrumentService;
+import com.hse.miemfinance.service.integration.InitializationIntegrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class InstrumentController {
 
 	private final InstrumentService instrumentService;
+
+	private final InitializationIntegrationService integrationService;
+
+	@GetMapping(value = "/quotes")
+	public ResponseEntity<String> getQuotes() {
+		integrationService.getCompanyData("nyse");
+		return ResponseEntity.ok().body("ok");
+	}
 
 	@GetMapping(value = "/{instrumentId}/info")
 	public ResponseEntity<InstrumentInfoDTO> getInfo(

@@ -4,6 +4,7 @@ import com.hse.miemfinance.model.entity.FileEntity;
 import com.hse.miemfinance.model.entity.user.User;
 import com.hse.miemfinance.model.entity.user.UserAttachment;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,8 @@ public interface UserAttachmentRepository extends JpaRepository<UserAttachment, 
 		JpaSpecificationExecutor<UserAttachment> {
 
 	List<UserAttachment> findAllByUser(User user);
+
+	Optional<UserAttachment> findByUser(User user);
 
 	void deleteAllByUser(User user);
 

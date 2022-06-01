@@ -130,6 +130,7 @@ public class InstrumentService {
 
 	public List<InstrumentDTO> getAllInstruments() {
 		return instrumentRepository.findAll().stream()
+				.limit(150) // todo: yamikhaylov 1.06.2022 refactor
 				.map(this::dtoFromInstrumentWithCurrency)
 				.collect(Collectors.toList());
 	}

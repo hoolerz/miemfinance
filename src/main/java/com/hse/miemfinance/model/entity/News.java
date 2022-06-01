@@ -1,5 +1,6 @@
 package com.hse.miemfinance.model.entity;
 
+import com.hse.miemfinance.model.dto.integration.NewsIntegrationDTO;
 import com.hse.miemfinance.model.entity.instrument.InstrumentNews;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -41,8 +42,17 @@ public class News extends AbstractPersistable<Long> {
 	@Column
 	private LocalDateTime publishedDate;
 
-	//@OrderBy("financialInstrument.name")
 	@OneToMany(mappedBy = "news", fetch = FetchType.EAGER, orphanRemoval = true)
 	private Set<InstrumentNews> financialInstruments;
+
+	public News(NewsIntegrationDTO integrationDTO) {
+		this.header = integrationDTO.getHeader();
+		this.fullText = integrationDTO.getArticle();
+		this.link = integrationDTO.getLink();
+		this.sentiment = String.valueOf(integrationDTO.getSentiment());
+		this.source = "Smartlab"; //todo yamikhaylov 30.05.22 - replace with source extraction
+		this.publishedDate = integrationDTO.getDate();
+		this.shortText = "";
+	}
 
 }

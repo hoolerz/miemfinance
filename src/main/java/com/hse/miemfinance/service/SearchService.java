@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SearchService {
@@ -28,11 +28,11 @@ public class SearchService {
 
 	private final SearchProperties searchProperties;
 
-	@EventListener(ApplicationReadyEvent.class)
 	public void index() {
 		if (searchProperties.getInitialIndexingEnabled()) {
-			System.out.println("inside indexing");
+			log.info("Started Instrument indexing");
 			instrumentRepository.index();
+			log.info("Finished Instrument indexing");
 		}
 	}
 
@@ -40,6 +40,7 @@ public class SearchService {
 		Optional<DictionaryItem> tag = dictionaryItemRepository.getFilter(filter);
 		if (tag.isPresent()) {
 			return tagRepository.findAllByTagValue(tag.get().getValue()).stream()
+					.limit(150) // todo: yamikhaylov 1.06.2022 refactor
 					.map(InstrumentTag::getFinancialInstrument)
 					.collect(Collectors.toList());
 		} else {
