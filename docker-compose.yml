@@ -17,8 +17,9 @@ services:
       - DATABASE_URL=jdbc:postgresql://postgres_miem:5432/postgres
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres
-      - MIEMFINANCE_APP_INITIALIZATION=false
+      - MIEMFINANCE_APP_INITIALIZATION=true
       - MIEMFINANCE_SSO_ENABLED=true
+      - MIEMFINANCE_STORAGE_ENDPOINT=http://minio_miem:9000
 
   postgres_miem:
     image: postgres:14.0

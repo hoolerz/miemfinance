@@ -6,9 +6,6 @@ ID;TYPE;VALUE;TEXT
 5;COUNTRY;FR;Франция
 6;QUICK_FILTER;RUSSIAN;Российские
 7;QUICK_FILTER;FOREIGN;Зарубежные
-8;QUICK_FILTER;TECHNOLOGY;Высокотехнологичные
-9;QUICK_FILTER;BANKING;Банки
-10;QUICK_FILTER;OIL;Нефтегазовые
 11;TAG;RUSSIAN;Российские
 12;TAG;FOREIGN;Зарубежные
 13;TAG;BLUE_CHIPS;Голубые фишки

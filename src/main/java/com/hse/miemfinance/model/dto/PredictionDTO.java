@@ -21,7 +21,7 @@ public class PredictionDTO {
 	public PredictionDTO(InstrumentPrediction entity) {
 		this.type = entity.getType();
 		this.prediction = entity.getPrediction();
-		this.certainty = String.format("%.2f", entity.getCertainty()) + "%";
+		this.certainty = String.format("%.2f", entity.getCertainty() * 100) + "%";
 		this.date = String.valueOf(entity.getUpdatedDate());
 	}
 

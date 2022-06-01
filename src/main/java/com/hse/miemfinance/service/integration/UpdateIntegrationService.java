@@ -10,16 +10,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 public class UpdateIntegrationService extends AbstractIntegrationService {
 
+	@Scheduled(cron = "0 30 5 ? * *")
 	public void updateData() {
+		log.info("Started daily update");
 		List<Instrument> instruments = instrumentRepository.findAll();
 		instruments.forEach(this::updateDataFor);
+		log.info("Finished daily update");
 	}
 
 	private void updateDataFor(Instrument instrument) {

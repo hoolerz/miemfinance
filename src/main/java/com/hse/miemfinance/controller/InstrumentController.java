@@ -23,12 +23,6 @@ public class InstrumentController {
 
 	private final InitializationIntegrationService integrationService;
 
-	@GetMapping(value = "/quotes")
-	public ResponseEntity<String> getQuotes() {
-		integrationService.getCompanyData("nyse");
-		return ResponseEntity.ok().body("ok");
-	}
-
 	@GetMapping(value = "/{instrumentId}/info")
 	public ResponseEntity<InstrumentInfoDTO> getInfo(
 			@PathVariable(value = "instrumentId") Long instrumentId) {

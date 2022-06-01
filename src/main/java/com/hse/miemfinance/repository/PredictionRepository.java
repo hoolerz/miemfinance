@@ -25,7 +25,9 @@ public interface PredictionRepository extends JpaRepository<InstrumentPrediction
 
 			Subquery<LocalDate> dateSubquery = cq.subquery(LocalDate.class);
 			Root<InstrumentPrediction> dateRoot = dateSubquery.from(InstrumentPrediction.class);
-			dateSubquery.select(cb.greatest((Expression) dateRoot.get(InstrumentPrediction_.UPDATED_DATE)));
+			dateSubquery
+					.select(cb.greatest((Expression) dateRoot.get(InstrumentPrediction_.UPDATED_DATE)))
+					.where(cb.equal(dateRoot.get(InstrumentPrediction_.FINANCIAL_INSTRUMENT), instrument));
 
 			return cb.and(
 					cb.equal(root.get(InstrumentPrediction_.FINANCIAL_INSTRUMENT), instrument),

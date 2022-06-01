@@ -66,6 +66,7 @@ public class Dictionaries {
 		public static final String NOT_FOUND = "Specified entity not found";
 		public static final String ALREADY_EXISTS = "Specified entity already exists";
 		public static final String WRONG_REQUEST = "Wrong request";
+		public static final String INTEGRATION_FAILED = "Failed to fetch %s for %s";
 	}
 
 	@UtilityClass
